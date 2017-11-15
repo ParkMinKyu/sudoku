@@ -2,7 +2,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>스도쿠 게임</title>
+<title>스도쿠 게임 (sudoku game)</title>
 <style type="text/css">
 .area{
     font-size: 29pt;
@@ -50,6 +50,7 @@ $(function(){
 	
 	createMap();
 	putNumber();
+	setGameNumber();
 	
 	function createMap(){
 		let nums = makeBasicNumber();
@@ -85,10 +86,39 @@ $(function(){
 		}
 		return numbers;
 	}
+	
+	function setGameNumber(){
+		for(let i = 0 ; i < 35 ; i ++){
+			let pox = parseInt(Math.random()*9);
+			let poy = parseInt(Math.random()*9);
+			$('.row').eq(pox).find('div').eq(poy).attr("contenteditable","true").text('');
+		}
+	}
+	
+	$('#finishBtn').click(function(){
+		for(let x = 0 ; x < 9 ; x ++){
+			for(let y = 0 ; y < 9 ;  y ++){
+				let realNum = map[x][y];
+				let userNum = parseInt($('.row').eq(x).find('div').eq(y).text());
+				if(realNum != userNum){
+					alert('You Faild.');
+					return false;
+				}
+			}
+		}
+		
+		alert("You Win.");
+		$('#reloadBtn').click();
+	});
+
+	$('#reloadBtn').click(function(){
+		location.reload();
+	});
 });
 </script>
 </head>
 <body>
+<button id="reloadBtn">reload</button>
 <div id="map" style="padding: 10px;">
 	<div class="row">
 		<div class="area top left"></div>
@@ -190,5 +220,7 @@ $(function(){
 		<div class="area bottom right"></div>
 	</div>
 </div>
+
+<button id="finishBtn">submit</button>
 </body>
 </html>
