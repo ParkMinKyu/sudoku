@@ -49,6 +49,7 @@ $(function(){
 	/* $('.area').attr("contenteditable","true"); */
 	
 	createMap();
+	shuffleMap(5);
 	putNumber();
 	setGameNumber();
 	
@@ -60,6 +61,20 @@ $(function(){
 				let pox = parseInt((x*3) >= 9 ? (x*3)/9 + (x*3)%9 : (x*3));
 				let poy = parseInt((y+x) >= 9 ? (y+x)%9 : (y+x));
 				map[pox][poy]=nums[y];
+			}
+		}
+		
+		console.log(map)
+	}
+	
+	function shuffleMap(count){
+		for(let cnt = 0 ; cnt < count ; cnt ++){
+			let poy1 = parseInt(Math.random()*8);
+			let poy2 = (poy1) % 3 == 2 ? (poy1 - 1) : (poy1 + 1)  ;
+			for(let x = 0 ; x < 9 ; x ++){
+				let temp = map[x][poy1];
+				map[x][poy1] = map[x][poy2];
+				map[x][poy2] = temp;
 			}
 		}
 		
@@ -92,6 +107,14 @@ $(function(){
 			let pox = parseInt(Math.random()*9);
 			let poy = parseInt(Math.random()*9);
 			$('.row').eq(pox).find('div').eq(poy).attr("contenteditable","true").text('');
+		}
+	}
+
+	function forloopMap(callback){
+		for(let x = 0 ; x < 9 ; x ++){
+			for(let y = 0 ; y < 9 ;  y ++){
+				callback(x,y);
+			}
 		}
 	}
 	
