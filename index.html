@@ -70,7 +70,10 @@ $(function(){
 	function shuffleMap(count){
 		for(let cnt = 0 ; cnt < count ; cnt ++){
 			let poy1 = parseInt(Math.random()*8);
-			let poy2 = (poy1) % 3 == 2 ? (poy1 - 1) : (poy1 + 1)  ;
+			let poy2 = (poy1) % 3 == 2 ? (poy1 - (parseInt(Math.random()*2)+1)) : (poy1 + (parseInt(Math.random()*2)+1));
+			if((poy1) % 3 == 1){
+				poy2 = parseInt(Math.random()*2) == 0 ? (poy1 - 1) : (poy1 + 1);
+			}
 			for(let x = 0 ; x < 9 ; x ++){
 				let temp = map[x][poy1];
 				map[x][poy1] = map[x][poy2];
