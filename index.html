@@ -40,6 +40,10 @@
 <script type="text/javascript" src="jquery-1.11.3.min.js"></script>
 <script type="text/javascript">
 $(function(){
+  var checkTime = setInterval(function(){
+    let time = parseInt($('#gameTime').text());
+    $('#gameTime').text(++time);
+  },1000);
 	var map = [[0,0,0,0,0,0,0,0,0],
 			[0,0,0,0,0,0,0,0,0],
 			[0,0,0,0,0,0,0,0,0],
@@ -56,6 +60,7 @@ $(function(){
 	shuffleMap(5);
 	putNumber();
 	setGameNumber();
+  checkTime;
 
 	function createMap(){
 		let nums = makeBasicNumber();
@@ -140,7 +145,7 @@ $(function(){
 			}
 		}
 
-		alert("You Win.");
+		alert("You Win. You finished : " + $('#gameTime').text() + "sec.");
 		$('#reloadBtn').click();
 	});
 
@@ -152,6 +157,9 @@ $(function(){
 </head>
 <body>
 <button id="reloadBtn">reload</button>
+<div class="timeArea">
+  경과시간 : <span id="gameTime">0</span>
+</div>
 <div id="map" style="padding: 10px;">
 	<div class="row">
 		<div class="area top left"></div>
