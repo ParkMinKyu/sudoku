@@ -31,5 +31,8 @@ $(function(){
 	$('#hardBtn').click(function(){
 		location.href="hard.html"
 	});
+	$('#easyBtn').click(function(){
+		location.href="index.html"
+	});
 	checkTime;
 });
