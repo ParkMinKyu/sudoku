@@ -31,3 +31,10 @@
 .error{
 	background-color: red;
 }
+.git-group{
+	width: 100%;
+    background-image: linear-gradient(to bottom,#dedede 0,#f8f8f8 100%);
+    margin: 5px;
+    text-align: center;
+    height: 50px;
+}
