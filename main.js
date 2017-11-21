@@ -17,7 +17,11 @@ $(function(){
 		}
 	});
 	$('#reloadBtn').click(function(){
-		location.reload();
+		if($('#easyBtn').css('background-color') == '#c7c731'){
+			$('#easyBtn').click();
+		}else{
+			$('#hardBtn').click();
+		}
 	});
 	$('#hardBtn').click(function(){
 		mapReset();
