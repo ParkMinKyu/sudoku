@@ -26,6 +26,8 @@ $(function(){
 		displayNumber();
 		setGameNumber(45);
 		$('#gameTime').text(0)
+		$(this).css('background-color','#c7c731');
+		$('#easyBtn').css('background-color','#ddd');
 	});
 	$('#easyBtn').click(function(){
 		mapReset();
@@ -34,6 +36,8 @@ $(function(){
 		displayNumber();
 		setGameNumber(35);
 		$('#gameTime').text(0)
+		$(this).css('background-color','#c7c731');
+		$('#hardBtn').css('background-color','#ddd');
 	});
 	$('#undoBtn').click(function(){
 		document.execCommand('undo');
