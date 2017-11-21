@@ -41,13 +41,18 @@ $(function(){
 	$('#redoBtn').click(function(){
 		document.execCommand('redo');
 	});
+	$('.numberArea > button').on('click',function(){
+		$('.point').text($(this).text());
+		checkUserInput();
+	});
 });
 var checkTime = setInterval(function(){
     let time = parseInt($('#gameTime').text());
     $('#gameTime').text(++time);
   },1000);
 function mapReset(){
-	$('.userInput').removeClass('userInput');
+	$('.userInput').attr("onclick",null).removeClass('userInput');
+	$('.point').removeClass('point');
 	$('.error').removeClass('error');
 	$('.duplicated').removeClass('duplicated');
 	$('.hint').removeClass('hint');
@@ -63,26 +68,17 @@ function setGameNumber(count){
 	for(let i = 0 ; i < count ; i ++){
 		let pox = parseInt(Math.random()*9);
 		let poy = parseInt(Math.random()*9);
-		addClass(pox,poy,'userInput').attr("contenteditable","true").text('').focus(function(){
-			setHintArea(pox,poy,true);
-			checkUserInput();
-		}).blur(function(){
-			setHintArea(pox,poy,false);
-			checkUserInput();
-		}).keyup(function(){
-			checkUserInput();
-		});
+		addClass(pox,poy,'userInput').text('').attr('onclick','setHintArea('+pox+','+poy+');');
 	}
 }
-function setHintArea(x,y,isFocus){
+function setHintArea(x,y){
+	$('.point').removeClass('point');
 	$('.error').removeClass('error');
 	$('.duplicated').removeClass('duplicated');
 	$('.hint').removeClass('hint');
 	for(let i = 0 ; i < 9 ; i ++){
-		if(isFocus){
-			addClass(x,i,'hint');
-			addClass(i,y,'hint');
-		}
+		addClass(x,i,'hint');
+		addClass(i,y,'hint');
 	}
 	
 	let ckxst = parseInt(x/3)*3;
@@ -92,11 +88,11 @@ function setHintArea(x,y,isFocus){
 	
 	for(let i = ckxst ; i < ckxed ; i ++){
 		for(let k = ckyst ; k < ckyed ; k ++){
-			if(isFocus){
-				addClass(i,k,'hint');
-			}
+			addClass(i,k,'hint');
 		}
 	}
+	addClass(x, y, "point");
+	checkUserInput();
 }
 function checkUserInput(){
 	$('.error').removeClass('error');

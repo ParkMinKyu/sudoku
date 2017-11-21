@@ -8,6 +8,14 @@
 .sudoku{
 	width: 500px;
 }
+.numberArea{
+	margin: 10px;
+    text-align: center;
+}
+.numberArea > button{
+	width: 40px;
+    height: 40px;
+}
 #reloadBtn, #easyBtn, #hardBtn{
 	float: left; 
 }
@@ -26,6 +34,7 @@
 	font-size: 30pt;
 }
 .userInput{
+	background-color: #f0f8ff;
 	font-weight: bold;
 	font-family: 'Nanum Gothic Coding', serif;
 }

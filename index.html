@@ -7,6 +7,11 @@
 <script type="text/javascript" src="jquery-1.11.3.min.js"></script>
 <script type="text/javascript" src="sudoku.js"></script>
 <script type="text/javascript" src="main.js"></script>
+<script type="text/javascript">
+$(function(){
+	$('#easyBtn').click();
+});
+</script>
 </head>
 <body>
 <div class="sudoku">
@@ -116,6 +121,19 @@
 		<div class="area bottom"></div>
 		<div class="area bottom right"></div>
 	</div>
+</div>
+<input type="hidden" id="pointX">
+<input type="hidden" id="pointY">
+<div class="numberArea">
+	<button>1</button>
+	<button>2</button>
+	<button>3</button>
+	<button>4</button>
+	<button>5</button>
+	<button>6</button>
+	<button>7</button>
+	<button>8</button>
+	<button>9</button>
 </div>
 <div class="buttomButtonArea">
 	<button id="easyBtn">easy mode</button>
