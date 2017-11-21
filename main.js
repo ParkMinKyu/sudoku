@@ -1,9 +1,4 @@
 $(function(){
-  var checkTime = setInterval(function(){
-    let time = parseInt($('#gameTime').text());
-    $('#gameTime').text(++time);
-  },1000);
-	
 	$('#finishBtn').click(function(){
 		checkUserInput();
 		for(let x = 0 ; x < 9 ; x ++){
@@ -25,13 +20,38 @@ $(function(){
 		location.reload();
 	});
 	$('#hardBtn').click(function(){
-		location.href="hard.html"
+		mapReset();
+		createMapHard();
+		shuffleMap(5);
+		displayNumber();
+		setGameNumber(45);
+		$('#gameTime').text(0)
 	});
 	$('#easyBtn').click(function(){
-		location.href="index.html"
+		mapReset();
+		createMapEasy();
+		shuffleMap(5);
+		displayNumber();
+		setGameNumber(35);
+		$('#gameTime').text(0)
 	});
-	checkTime;
+	$('#undoBtn').click(function(){
+		document.execCommand('undo');
+	});
+	$('#redoBtn').click(function(){
+		document.execCommand('redo');
+	});
 });
+var checkTime = setInterval(function(){
+    let time = parseInt($('#gameTime').text());
+    $('#gameTime').text(++time);
+  },1000);
+function mapReset(){
+	$('.userInput').removeClass('userInput');
+	$('.error').removeClass('error');
+	$('.duplicated').removeClass('duplicated');
+	$('.hint').removeClass('hint');
+}
 function displayNumber(){
 	for(let x = 0 ; x < 9 ; x ++){
 		for(let y = 0 ; y < 9 ;  y ++){

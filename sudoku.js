@@ -10,6 +10,7 @@ var map = [[0,0,0,0,0,0,0,0,0],
 			[0,0,0,0,0,0,0,0,0]];
 
 	function createMapHard(){
+		resetMap();
 		let count = 0;
 		let isCreate = false;
 		while(isCreate == false){
@@ -66,6 +67,7 @@ var map = [[0,0,0,0,0,0,0,0,0],
 		return true;
 	}  	
 	function createMapEasy(){
+		resetMap();
 		let nums = makeBasicNumber();
 		for(let x = 0 ; x < 9 ; x ++){
 			for(let y = 0 ; y < 9 ;  y ++){
