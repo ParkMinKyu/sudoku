@@ -1,6 +1,6 @@
 @CHARSET "UTF-8";
 	
-@import url(http://fonts.googleapis.com/earlyaccess/nanumgothiccoding.css);
+@import url(//fonts.googleapis.com/earlyaccess/nanumgothiccoding.css);
 *{
 	font-size: 20pt;
 	font-family: 'Nanum Gothic Coding', serif;
