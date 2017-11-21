@@ -38,3 +38,9 @@
     text-align: center;
     height: 50px;
 }
+.hint{
+	background-color: #b5e8ff;
+}
+.duplicated{
+	background-color: #ffb5b5;
+}

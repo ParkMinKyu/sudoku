@@ -94,13 +94,6 @@ var map = [[0,0,0,0,0,0,0,0,0],
 		}
 		console.log(map)
 	}
-	function displayNumber(){
-		for(let x = 0 ; x < 9 ; x ++){
-			for(let y = 0 ; y < 9 ;  y ++){
-				$('.row').eq(x).find('div').eq(y).text(map[x][y]);
-			}
-		}
-	}
 	function makeBasicNumber(){
 		let count = 0;
 		let numbers = [0,0,0,0,0,0,0,0,0];
@@ -112,11 +105,4 @@ var map = [[0,0,0,0,0,0,0,0,0],
 			}
 		}
 		return numbers;
-	}
-	function setGameNumber(count){
-		for(let i = 0 ; i < count ; i ++){
-			let pox = parseInt(Math.random()*9);
-			let poy = parseInt(Math.random()*9);
-			$('.row').eq(pox).find('div').eq(poy).attr("contenteditable","true").addClass('userInput').text('');
-		}
 	}
