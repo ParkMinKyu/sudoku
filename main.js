@@ -8,7 +8,7 @@ $(function(){
 		checkUserInput();
 		for(let x = 0 ; x < 9 ; x ++){
 			for(let y = 0 ; y < 9 ;  y ++){
-				if(elementSelector(x,y).text() == ''){
+				if(elementSelector(x,y).text() == '' || parseInt(elementSelector(x,y).text()) > 9 ){
 					addClass(x,y,'error');
 				}
 			}
