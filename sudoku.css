@@ -5,6 +5,9 @@
 	font-size: 20pt;
 	font-family: 'Nanum Gothic Coding', serif;
 }
+.point{
+	background-color: #f1ffb5 !important;
+}
 .sudoku{
 	width: 500px;
 }
