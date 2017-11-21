@@ -5,20 +5,16 @@ $(function(){
   },1000);
 	
 	$('#finishBtn').click(function(){
-		let fcnt = 0;
+		checkUserInput();
 		for(let x = 0 ; x < 9 ; x ++){
 			for(let y = 0 ; y < 9 ;  y ++){
-				let realNum = map[x][y];
-				let userNum = parseInt(elementSelector(x,y).text());
-				if(realNum != userNum){
-					if(elementSelector(x,y).attr("contenteditable") == "true")addClass(x,y,'error');
-					fcnt++;
-				}else if(elementSelector(x,y).attr("contenteditable") == "true"){
-					removeClass(x,y,'error');
+				if(elementSelector(x,y).text() == ''){
+					addClass(x,y,'error');
 				}
 			}
 		}
-		if(fcnt > 0){
+		
+		if($('.error').length > 0 || $('.duplicated').length > 0){
 			alert('You Faild.');
 		}else{
 			alert("You Win. You finished : " + $('#gameTime').text() + "sec.");
@@ -49,21 +45,23 @@ function setGameNumber(count){
 		let poy = parseInt(Math.random()*9);
 		addClass(pox,poy,'userInput').attr("contenteditable","true").text('').focus(function(){
 			setHintArea(pox,poy,true);
+			checkUserInput();
 		}).blur(function(){
 			setHintArea(pox,poy,false);
+			checkUserInput();
 		}).keyup(function(){
-			checkUserInput(pox,poy,$(this).text());
+			checkUserInput();
 		});
 	}
 }
 function setHintArea(x,y,isFocus){
+	$('.error').removeClass('error');
+	$('.duplicated').removeClass('duplicated');
+	$('.hint').removeClass('hint');
 	for(let i = 0 ; i < 9 ; i ++){
 		if(isFocus){
 			addClass(x,i,'hint');
 			addClass(i,y,'hint');
-		}else{
-			removeClass(x,i,'hint');
-			removeClass(i,y,'hint');
 		}
 	}
 	
@@ -76,38 +74,37 @@ function setHintArea(x,y,isFocus){
 		for(let k = ckyst ; k < ckyed ; k ++){
 			if(isFocus){
 				addClass(i,k,'hint');
-			}else{
-				removeClass(i,k,'hint');
 			}
 		}
 	}
 }
-function checkUserInput(x,y,number){
-	for(let i = 0 ; i < 9 ; i ++){
-		if(elementSelector(x,i).text() != "" && elementSelector(x,i).text() == number && y != i){
-			addClass(x,i,'duplicated');
-		}else if(elementSelector(x,i).text() != number && y != i){
-			removeClass(x,i,'duplicated');
-		}
-		
-		if(elementSelector(i,y).text() != "" && elementSelector(i,y).text() == number && x != i){
-			addClass(i,y,'duplicated');
-		}else if(elementSelector(i,y).text() != number && x != i){
-			removeClass(i,y,'duplicated');
-		}
-	}
+function checkUserInput(){
+	$('.error').removeClass('error');
+	$('.duplicated').removeClass('duplicated');
 	
-	let ckxst = parseInt(x/3)*3;
-	let ckxed = ckxst + 3;
-	let ckyst = parseInt(y/3)*3;
-	let ckyed = ckyst + 3;
-	
-	for(let i = ckxst ; i < ckxed ; i ++){
-		for(let k = ckyst ; k < ckyed ; k ++){
-			if(elementSelector(i,k).text() != "" && elementSelector(i,k).text() == number && x != i && y != k){
-				addClass(i,k,'duplicated');
-			}else if(elementSelector(i,k).text() != number && x != i && y != k){
-				removeClass(i,k,'duplicated');
+	for(let x = 0 ; x < 9 ; x ++){
+		for(let y = 0 ; y < 9 ;  y ++){
+			for(let i = 0 ; i < 9 ; i ++){
+				if(elementSelector(x,i).text() != "" && elementSelector(x,i).text() == elementSelector(x,y).text() && y != i){
+					addClass(x,i,'duplicated');
+				}
+				
+				if(elementSelector(i,y).text() != "" && elementSelector(i,y).text() == elementSelector(x,y).text() && x != i){
+					addClass(i,y,'duplicated');
+				}
+			}
+			
+			let ckxst = parseInt(x/3)*3;
+			let ckxed = ckxst + 3;
+			let ckyst = parseInt(y/3)*3;
+			let ckyed = ckyst + 3;
+			
+			for(let i = ckxst ; i < ckxed ; i ++){
+				for(let k = ckyst ; k < ckyed ; k ++){
+					if(elementSelector(i,k).text() != "" && elementSelector(i,k).text() == elementSelector(x,y).text() && x != i && y != k){
+						addClass(i,k,'duplicated');
+					}
+				}
 			}
 		}
 	}

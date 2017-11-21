@@ -10,7 +10,8 @@
 	float: left;
 }
 .userInput{
-  background-color: #b5ffc6;
+	font-style: italic;
+	font-family: fantasy;
 }
 .row{
 	height: 60px;
