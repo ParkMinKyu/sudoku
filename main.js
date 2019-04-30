@@ -50,7 +50,7 @@ $(function(){
 		
 		var history = historyStack.pop();
 		setHintArea(history.x, history.y);
-		$('.point').text('');
+		$('.point').text(history.num);
 		checkUserInput();
 	});
 	$('#redoBtn').click(function(){
