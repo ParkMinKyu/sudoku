@@ -49,7 +49,7 @@ $(function(){
 			return false;
 		
 		var history = historyStack.pop();
-		setHintArea(history.x, history.y);
+		setHintArea(history.x, history.y, 'undo');
 		$('.point').text(history.num);
 		checkUserInput();
 	});
@@ -93,7 +93,7 @@ function setGameNumber(count){
 		addClass(pox,poy,'userInput').text('').attr('onclick','setHintArea('+pox+','+poy+');');
 	}
 }
-function setHintArea(x,y){
+function setHintArea(x,y,stat){
 	$('#pointX').val(x);
 	$('#pointY').val(y);
 	$('.point').removeClass('point');
@@ -117,11 +117,13 @@ function setHintArea(x,y){
 	}
 	addClass(x, y, "point");
 	checkUserInput();
-	historyStack.push({
-		x : parseInt($('#pointX').val()),
-		y : parseInt($('#pointY').val()),
-		num : $('.point').text()
-	});
+	if(stat != 'undo'){
+		historyStack.push({
+			x : parseInt($('#pointX').val()),
+			y : parseInt($('#pointY').val()),
+			num : $('.point').text()
+		});
+	}	
 }
 function checkUserInput(){
 	$('.error').removeClass('error');
