@@ -1,3 +1,5 @@
+var historyStack = [];
+var nowStaus = {x:0, y:0, num:0};
 $(function(){
 	$('#finishBtn').click(function(){
 		checkUserInput();
@@ -50,6 +52,8 @@ $(function(){
 		document.execCommand('redo');
 	});
 	$('.numberArea > button').on('click',function(){
+		nowStaus.num = parseInt($(this).text());
+		historyStack.push(nowStaus);
 		$('.point').text($(this).text());
 		checkUserInput();
 	});
@@ -80,6 +84,9 @@ function setGameNumber(count){
 	}
 }
 function setHintArea(x,y){
+	nowStaus.x = x;
+	nowStaus.y = y;
+	
 	$('.point').removeClass('point');
 	$('.error').removeClass('error');
 	$('.duplicated').removeClass('duplicated');
