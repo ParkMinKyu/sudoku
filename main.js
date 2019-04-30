@@ -61,7 +61,7 @@ $(function(){
 		historyStack.push({
 			x : parseInt($('#pointX').val()),
 			y : parseInt($('#pointY').val()),
-			num : parseInt($(this).text())
+			num : $(this).text()
 		});
 		
 		$('.point').text($(this).text());
@@ -117,6 +117,11 @@ function setHintArea(x,y){
 	}
 	addClass(x, y, "point");
 	checkUserInput();
+	historyStack.push({
+		x : parseInt($('#pointX').val()),
+		y : parseInt($('#pointY').val()),
+		num : $('.point').text()
+	});
 }
 function checkUserInput(){
 	$('.error').removeClass('error');
