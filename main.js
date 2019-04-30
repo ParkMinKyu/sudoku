@@ -45,7 +45,10 @@ $(function(){
 		$('#hardBtn').css('background-color','#ddd');
 	});
 	$('#undoBtn').click(function(){
-		document.execCommand('undo');
+		var history = historyStack.pop();
+		setHintArea(history.x, history.y);
+		$('.point').text('');
+		checkUserInput();
 	});
 	$('#redoBtn').click(function(){
 		document.execCommand('redo');
